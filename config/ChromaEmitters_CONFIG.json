@@ -1,0 +1,129 @@
+{
+    "INFO": {
+        "PROJECT_NAME": "ChromaEmitters",
+        "PROJECT_FOLDER": "ChromaEmitters",
+        "PROJECT_DESCRIPTION": "Colour-driven LED and terminal emitter integration for ChromaSpace",
+        "AUTHOR": "Daniel Austin <the.potato.gnome@gmail.com>",
+        "VERSION": "0.3.0",
+        "MAIN_ENTRY_POINT": "src/ChromaEmitters/main.py"
+    },
+    "ROOTS": {
+        "PROJECT": "./Core/ChromaEmitters",
+        "WORKSPACE": "."
+    },
+    "ROOT_MODES": {
+        "ROOT_MODES: project": "Paths are relative to the project root.",
+        "ROOT_MODES: workspace": "Paths are relative to the workspace root.",
+        "CONFIG": "project",
+        "LOGS": "project",
+        "INPUTS": "project",
+        "OUTPUTS": "project",
+        "INPUT_DATA": "workspace",
+        "OUTPUT_DATA": "project",
+        "TEST_CONFIG": "project",
+        "TEST_LOGS": "workspace",
+        "TEST_INPUTS": "workspace",
+        "TEST_OUTPUTS": "workspace"
+    },
+    "PATHS": {
+        "CONFIG": "config/",
+        "LOGS": "logFiles/",
+        "INPUTS": "config/",
+        "OUTPUTS": "output/",
+        "INPUT_DATA": ".projects_data/input_data/",
+        "OUTPUT_DATA": "output/",
+        "TEST_CONFIG": "config/",
+        "TEST_LOGS": ".test_logs/ChromaEmitters/",
+        "TEST_INPUTS": ".tests_data/inputs/",
+        "TEST_OUTPUTS": ".tests_data/ChromaEmitters/outputs/"
+    },
+    "SHARED_CONFIG": {
+        "ENABLED": true,
+        "PATH": "GLOBAL_SHARED.d/",
+        "FILES": {
+            "COLOURS": "COLOURS.json",
+            "BORDER_PATTERNS": "BORDER_PATTERNS.json",
+            "TESTS_OPTIONS": "TESTS_OPTIONS.json",
+            "TIME_STAMP_OPTIONS": "TIME_STAMP_OPTIONS.json"
+        }
+    },
+    "ALT_CONFIG": {
+        "ENABLED": false,
+        "PATH": "",
+        "FILES": {
+            "COLOURS": "",
+            "BORDER_PATTERNS": "",
+            "TESTS_OPTIONS": "",
+            "TIME_STAMP_OPTIONS": ""
+        }
+    },
+    "LOG_FILES": {
+        "MASTER": "ChromaEmitters_MASTER.log",
+        "SESSION": "ChromaEmitters_SESSION.log",
+        "RUNTIME": "ChromaEmitters_RUNTIME.log",
+        "ERROR": "ChromaEmitters_ERROR.log",
+        "DEBUG": "ChromaEmitters_DEBUG.log",
+        "WARNING": "ChromaEmitters_WARNING.log",
+        "INIT": "ChromaEmitters_INIT.log",
+        "FS": "ChromaEmitters_FS.log"
+    },
+    "LOG_CATEGORIES": {
+        "default": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME"
+        ],
+        "error": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME",
+            "ERROR"
+        ],
+        "fs": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME",
+            "FS"
+        ],
+        "init": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME",
+            "INIT"
+        ],
+        "debug": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME",
+            "DEBUG"
+        ],
+        "warning": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME",
+            "WARNING"
+        ],
+        "all": [
+            "MASTER",
+            "SESSION",
+            "RUNTIME",
+            "ERROR",
+            "FS",
+            "INIT",
+            "DEBUG",
+            "WARNING"
+        ]
+    },
+
+    "emitters": {
+        "tapo_led": {
+            "enabled": true,
+            "device_ip": "192.168.1.50",
+            "transition_ms": 50,
+            "auth_token": ""
+        },
+        "terminal": {
+            "enabled": true
+        }
+    }
+}
