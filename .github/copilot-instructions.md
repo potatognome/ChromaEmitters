@@ -1,82 +1,26 @@
-# Copilot Instructions — ChromaEmitters (Device Output Layer)
-
 # Copilot Instructions - ChromaEmitters
 
-Scope: this file applies only to the ChromaEmitters project.
+## Purpose
+ChromaEmitters is the device-output layer for the Chroma stack. Keep this repo focused on emitter registration, device adapters, and deterministic frame delivery.
+This file is minimal by design. All general rules, agent edit policies, and centralized log/config options are defined in the modular copilot-instructions files.
 
-Rules:
-- Keep ChromaEmitters focused on emitter/device output concerns.
-- Do not duplicate colour model logic from Core/Chromaspace or animation logic from Core/Chromagrams.
-- Use config/ChromaEmitters_CONFIG.json as the primary config and config/emitters.d for overrides.
-- Keep paths portable and workspace-relative. Do not introduce machine-specific absolute paths.
-- Prefer imports and references that work when the workspace root is dev_local on any device.
-- Enabled emitters
-- Device IPs
-- Authentication tokens
-- Transition speeds
-- Device‑specific parameters
-Example
-{
-  "emitters": {
-    "tapo_led": {
-      "enabled": true,
-      "device_ip": "192.168.1.50",
-      "transition_ms": 50
-    },
-    "terminal": {
-      "enabled": true
-    }
-  }
-}
+Refer to:
+- [Modular copilot-instructions](./copilot-instructions.d/*.md) for extensions to the general rules in this file.
 
 
+## Shared Policies Propagated from dev_local/.github
+- Treat this repository as its own root. Do not depend on parent dev_local paths existing on another machine.
+- Keep all config, logs, tests, and output locations config-driven. Respect ROOT_MODES, PATHS, LOG_FILES, and any `.d` override directories.
+- Never hardcode machine-specific absolute paths.
+- Use tUilKit config and logging patterns for production code; prefer factory-based access to shared services where available.
+- Use semantic colour/log keys such as `!info`, `!proc`, `!done`, `!warn`, `!error`, `!path`, `!file`, `!data`, `!test`, `!pass`, `!fail`, and `!date`.
+- Keep tests deterministic and update test bootstrap files such as `tests/test_paths.json` when path behavior changes.
+- Update `README.md`, `CHANGELOG.md`, `pyproject.toml`, and config version fields together when behavior or releases change.
+- Keep changelog dates in `YYYY-MM-DD` format and place substantive docs under `docs/`.
 
-6. Override Directory
-config/emitters.d/
-
-
-Files inside may be:
-- JSON (preferred)
-- YAML (allowed for user‑authored overrides)
-Overrides must merge deterministically using tUilKit’s config loader.
-
-7. tUilKit Integration
-Copilot must ensure:
-- All config loading uses tUilKit’s deterministic loader
-- All emitter actions use tUilKit structured logging
-- All errors are audit‑friendly
-- All emitter metadata is exposed to tUilKit for introspection
-
-8. Adding New Emitters
-Copilot must follow this workflow:
-- Create a new emitter folder under:
-src/chromaemitters/<device>/
-- Implement an emitter class extending EmitterInterface
-- Register it with @register_emitter
-- Add a config schema (YAML)
-- Add default config to ChromaEmitters_CONFIG.json
-- Add tests under tests/
-This ensures:
-- Clean modularity
-- Registry‑driven discovery
-- Deterministic configuration
-- Easy future expansion
-
-9. Testing Requirements
-Copilot must scaffold:
-- Emitter initialization tests
-- Frame rendering tests
-- Config loading tests
-- Registry registration tests
-- Device mock tests (no real hardware required)
-
-10. Summary
-ChromaEmitters is the device output layer of Chromaspace.
-It must:
-- Register emitters with the Chromacore Registry
-- Use ChromaEmitters_CONFIG.json as the primary config file
-- Integrate with tUilKit for config + logging
-- Keep emitters modular and extensible
-- Support workspace‑mode and project‑root‑mode path resolution
-- Provide a clean path for adding new devices
-This ensures a scalable, deterministic, hardware‑agnostic output pipeline for the entire Chromaspace ecosystem.
+## Project-Specific Rules
+- Do not duplicate colour-system logic from Chromaspace or animation logic from Chromagrams.
+- Use `config/ChromaEmitters_CONFIG.json` as the primary config and `config/emitters.d/` for layered overrides.
+- New emitters should live under `src/chromaemitters/<device>/` and register through the project's emitter registration flow.
+- Device-specific settings such as IPs, tokens, or transition parameters must remain externalized in config, never embedded in source.
+- Tests should cover emitter initialization, config loading, registry/discovery behavior, and device-mock rendering.
