@@ -24,3 +24,21 @@ Refer to:
 - New emitters should live under `src/chromaemitters/<device>/` and register through the project's emitter registration flow.
 - Device-specific settings such as IPs, tokens, or transition parameters must remain externalized in config, never embedded in source.
 - Tests should cover emitter initialization, config loading, registry/discovery behavior, and device-mock rendering.
+
+## Building Exemplar Policy
+
+The `examples/` folder must include supplementary scripts that run outside pytest and stress public APIs and menu/error paths.
+
+Requirements:
+- Exercise all public functions across normal and adversarial input scenarios.
+- Deliberately stress UI/menu edge cases (empty input, out-of-range values, special characters, very long strings).
+- Produce visual, interactive, colour-logged output alongside structured logs for human review.
+- Keep scripts as living behavior documentation.
+- Maintain an `examples/exemplar.py` mock application entry point.
+
+`examples/exemplar.py` should:
+- Load tUilKit factory imports in verbose mode where available (for example, ConfigLoader).
+- Generate a standard CLI menu with project header and submenus.
+- Read the project primary config file.
+- Read and test-load all `ROOT_MODES`.
+- Verify and display resolved paths for `LOG_FILES`, config files, and input data files.
