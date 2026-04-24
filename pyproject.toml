@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ChromaEmitters"
-version = "0.3.0"
+version = "0.3.9"
 description = "Device output layer for Chromaspace frames"
 readme = "docs/README.md"
 requires-python = ">=3.8"
@@ -12,5 +12,7 @@ dependencies = ["tUilKit", "PyYAML"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+
 
 

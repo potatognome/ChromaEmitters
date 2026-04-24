@@ -26,7 +26,7 @@
         "TEST_OUTPUTS": "workspace",
         "LOG_PATHS": "workspace",
         "TESTS_LOGS": "workspace",
-        "TESTS_CONFIG": "workspace",
+        "TESTS_CONFIG": "project",
         "TESTS_INPUTS": "workspace",
         "TESTS_OUTPUTS": "workspace"
     },
